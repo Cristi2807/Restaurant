@@ -1,0 +1,26 @@
+services:
+  dining-hall:
+    image: "dinning-hall:latest"
+    container_name: "DinningHall"
+    volumes:
+      - ../DinningHall/src:/go/src/mathapp
+    networks:
+      - "restaurant"
+    ports:
+      - "8020:8020"
+    restart: unless-stopped
+
+  kitchen:
+    image: "kitchen:latest"
+    container_name: "Kitchen"
+    volumes:
+      - ../Kitchen/src:/go/src/mathapp
+    networks:
+      - "restaurant"
+    ports:
+      - "8010:8010"
+    restart: unless-stopped
+
+networks:
+  restaurant:
+    name: "Restaurant"
